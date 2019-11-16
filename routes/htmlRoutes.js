@@ -1,9 +1,20 @@
 var db = require("../models");
+var path = require("path");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
     res.sendFile(path.join(__dirname, "../public/index.html"));
+  });
+
+  // Load signup page
+  app.get("/signup", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/signup.html"));
+  });
+
+  // Load contact page
+  app.get("/contact", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/contact.html"));
   });
 
   // Load example page and pass in an example by id
