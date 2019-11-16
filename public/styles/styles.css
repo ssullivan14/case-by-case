@@ -45,7 +45,7 @@ header .overlay {
 
 @media (pointer: coarse) and (hover: none) {
   header {
-    background: url('https://source.unsplash.com/XT5OInaElMw/1600x900') black no-repeat center center scroll;
+    background: url(../img/concrete-road-surrounded-by-trees-831243.jpg) black no-repeat center center scroll;
   }
   header video {
     display: none;
@@ -108,4 +108,8 @@ header .overlay {
 
 .jumbotron {
   background: transparent;
+}
+
+.menuIcons {
+  color: #85B598;
 }
