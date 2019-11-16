@@ -1,6 +1,12 @@
 nav {
   z-index: 1000;
   overflow: visible;
+  margin-bottom: 50px;
+}
+
+body {
+  background-color: black;
+  color: #dddddd;
 }
 
 header {
@@ -46,15 +52,17 @@ header .overlay {
   }
 }
 
-.btn-secondary {
+.btn-dropDown {
   background-color: #85B598;
+  color: #fff;
   border: 0px;
   font-family: inherit; /* Important for vertical align on mobile phones */
   margin: 0; /* Important for vertical align on mobile phones */
 }
 
-.btn-secondary:hover {
+.btn-dropDown:hover {
   background-color: #62846F;
+  color: #fff;
 }
 
 .spacer {
@@ -82,4 +90,22 @@ header .overlay {
     border: none;
     border-radius: 1.5rem;
     padding:2%;
+}
+
+.smLogo {
+  max-height: 40px;
+}
+
+#static {
+  background-image: url(../img/concrete-road-surrounded-by-trees-831243.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.jumbotron {
+  background: transparent;
 }
