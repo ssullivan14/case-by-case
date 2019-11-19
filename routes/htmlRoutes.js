@@ -1,15 +1,26 @@
 var db = require("../models");
 var path = require("path");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
   // Load index page
   app.get("/", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/index.html"));
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/index.html"));
+    }
   });
 
   // Load signup page
   app.get("/signup", function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/signup.html"));
+    // If the user already has an account send them to the members page
+    if (req.user) {
+      res.redirect("/members");
+    } else {
+      res.sendFile(path.join(__dirname, "../public/signup.html"));
+    }
   });
 
   // Load contact page

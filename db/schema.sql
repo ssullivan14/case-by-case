@@ -1,17 +1,15 @@
-DROP DATABASE IF EXISTS casebycase;
+CREATE DATABASE IF NOT EXISTS `casebycase` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `casebycase`;
 
-CREATE DATABASE casebycase;
+CREATE TABLE IF NOT EXISTS `user` (
+  `id` int(11) NOT NULL,
+  `username` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (id)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
-USE casebycase;
+INSERT INTO `user` (`id`, `username`, `password`, `email`) VALUES (1, 'test', 'test', 'test@test.com');
 
-CREATE TABLE user (
-id INTEGER AUTO_INCREMENT NOT NULL,
-
-user_name VARCHAR(100),
-
-user_email VARCHAR(100),
-
-user_password VARCHAR(10),
-
-PRIMARY KEY (id)
-);
+ALTER TABLE `user` ADD PRIMARY KEY (`id`);
+ALTER TABLE `user` MODIFY `id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
