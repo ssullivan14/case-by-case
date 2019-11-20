@@ -24,18 +24,19 @@
             <!-- Display items to the right -->
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                <a class="nav-item nav-link" href="#">About&nbsp;&nbsp;&nbsp;</a>
-                <a class="nav-item nav-link" href="#"><i class="fas fa-user-plus"></i>&nbsp;Sign-Up&nbsp;</a>
+                <a class="nav-item nav-link" href="/about">About&nbsp;</a>
+                <a class="nav-item nav-link" href="/contact"><i class="far fa-paper-plane menuIcons"></i>&nbsp;Contact Us</a>
+                <a class="nav-item nav-link" href="/signup"><i class="fas fa-user-plus menuIcons"></i>&nbsp;Sign-Up&nbsp;</a>
                 <!-- Login Dropdown -->
                 <div class="dropdown">
-                    <button type="button" class="btn btn-secondary"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
+                    <button type="button" class="btn btn-dropDown"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
                     <div class="dropdown-menu p-3">
-                        <form>
+                        <form action="auth" method="POST">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Username" value="" />
+                                <input name="username" type="text" class="form-control" placeholder="Username" required />
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control" placeholder="Password" value="" />
+                                <input name="password" type="password" class="form-control" placeholder="Password" required />
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn-login" value="Submit" />
