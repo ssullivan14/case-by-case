@@ -37,6 +37,19 @@ module.exports = function(app) {
     });
   });
 
+  // example of a locked down route
+  app.get("/members", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/members.html"));
+    // with handlebars:
+    // db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
+    //   res.render("example", {
+    //     example: dbExample
+    //   });
+    // });
+    // });
+  });
+
+
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
