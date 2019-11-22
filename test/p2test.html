@@ -18,51 +18,88 @@
     var userStart = "2018-01-10";
     var userEnd = "2019-01-10";
     var userCrime = "Larceny"
-    var url = {
-        {
-            "indianapolis": "https://moto.data.socrata.com/resource/n3wc-t646.json",
-            "case": "All caps"
-        },
-        {
-            "ashland": "https://moto.data.socrata.com/resource/r4fp-j8h5.json",
-            "case": "All caps"
-        },
-        {
-            "memphis": "https://moto.data.socrata.com/resource/m8mc-h4hu.json",
-            "case": "1st letter cap"
-        },
-        {
-            "contraCosta": "https://moto.data.socrata.com/resource/vsr6-kf7i.json",
-            "case": "All caps"
-        },
-        {
-            "collier": "https://moto.data.socrata.com/resource/a6t8-qi8u.json",
-            "case": "All caps"
-        },
-        {
-            "santafe": "https://moto.data.socrata.com/resource/sf3a-evcx.json",
-            "case": "All caps"
-        },
-        {
-            "saltLakeCity": "https://moto.data.socrata.com/resource/qbr3-v7gz.json",
-            "case": "All caps"
-        },
-        {
-            "kansasCity": "https://moto.data.socrata.com/resource/6vhr-dqzs.json",
-            "case": "1st letter cap"
-        }
+    var urlCity;
+    switch (url) {
+
+        case "indianapolis": 
+            urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
+            break;
+
+        case "ashland": 
+            urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
+            break;
+
+        case "memphis":
+            urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
+            break;
+
+        case "contraCosta":
+            urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
+            break;
+
+        case "collier":
+            urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
+            break;
+
+        case "santafe":
+            urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
+            break;
+
+        case "saltLakeCity":
+            urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
+            break;
+
+        case "kansasCity":
+            urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
+            break;
     };
+
     var startDate = userStart + "T00:00:00"
     var endDate = userEnd + "T23:59:59"
-    var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+userCrime.toUpperCase()+"%25')";
+    var crimeFormat = userCrime.toUpperCase()
+    console.log(crimeFormat)
+    var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
     
     $.ajax({
-        "url": url.ashland + params,
+        "url": urlCity[0].indianapolis + params,
         "method": "GET",
     }).then(function(response) {
         console.log(response.length)
         console.log(response)
     });
+
+    function capCrime(crimestr){
+        return crimestr.charAt(0).toUpperCase() + crimestr.slice(1);
+    };
+
+    function formatCrime(crime) {
+        var city = $("select[name='location'").val();
+        if(city = "Ashland"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat;
+        } else if(city = "Collier"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat;
+        } else if(city = "Contra Costa"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat;
+        } else if(city = "Indianapolis"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat;
+        } else if(city = "Kansas"){
+            crimeFormat = capCrime(userCrime);
+            return crimeFormat;
+        } else if(city = "Memphis"){
+            crimeFormat = capCrime(userCrime);
+            return crimeFormat;
+        } else if(city = "Santa Fe"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat;
+        } else if(city = "Salt Lake"){
+            crimeFormat = userCrime.toUpperCase();
+            return crimeFormat
+        };
+    };
     </script>
 </body>
 </html>
