@@ -1,8 +1,5 @@
 <p align="center">
-    <a href="https://github.com/ssullivan14/case-by-case/graphs/contributors" alt="Contributors">
-    <img src="https://img.shields.io/github/contributors/badges/shields" /></a>
-    <br><br>
-    <img src="public/assets/img/logo2.png" alt="Logo"><br>
+    <img src="public/img/logo_color.png" alt="Logo"><br>
 </p>
 
 ## Overview
