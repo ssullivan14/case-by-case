@@ -33,6 +33,7 @@ app.use(passport.session());
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/dataRoutes")(app);
 
 var syncOptions = { force: false };
 
