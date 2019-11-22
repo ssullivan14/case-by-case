@@ -29,22 +29,9 @@ module.exports = function(app) {
   });
 
    // Load members home page
-   app.get("/home", function(req, res) {
+   app.get("/home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
-  }); 
-
-  // example of a locked down route
-  app.get("/members", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-    // with handlebars:
-    // db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-    //   res.render("example", {
-    //     example: dbExample
-    //   });
-    // });
-    // });
   });
-
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
