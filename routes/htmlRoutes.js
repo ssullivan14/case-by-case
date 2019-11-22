@@ -29,9 +29,9 @@ module.exports = function(app) {
   });
 
    // Load members home page
-   app.get("/home", function(req, res) {
+   app.get("/home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
-  }); 
+  });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
