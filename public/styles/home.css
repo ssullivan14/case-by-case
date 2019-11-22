@@ -1,0 +1,46 @@
+nav {
+  overflow: visible;
+  margin-bottom: 50px;
+}
+
+body {
+  background-color: black;
+  color: #dddddd;
+}
+.spacer {
+  padding-top: 10px;
+}
+
+.smLogo {
+  max-height: 40px;
+}
+
+#static {
+  background-image: url(../img/concrete-road-surrounded-by-trees-831243.jpg);
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.jumbotron {
+  background: transparent;
+}
+
+.menuIcons {
+  color: #85B598;
+}
+
+.userIcon {
+  color: #D8AC31;
+}
+
+.member-name {
+  color: #FFF6E5;
+}
+
+.card, .ext-btn {
+  color: #313131;
+}

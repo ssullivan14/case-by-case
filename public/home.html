@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/home.css">
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- BootStrap Script -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/eeaaa00cac.js"></script>
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css"/>
+    <title>Case by Case</title>
+</head>
+<body id="static">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" id="brand" href="/"><img src="img/logo.png" class="img-fluid smLogo" alt="Responsive image"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Display items to the right -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/about">About&nbsp;</a>
+            <a class="nav-item nav-link" href="/contact"><i class="far fa-paper-plane menuIcons"></i>&nbsp;Contact Us</a>
+            <a class="nav-item nav-link" href="#"><i class="fas fa-user-secret userIcon"></i>&nbsp;<span class="member-name"></span></a>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <form class="search">
+                    <h4 class="display-5"><i>SEARCH DATABASE</i></h4>
+                    <!-- 1st Form Row -->
+                    <div class="form-row spacer">
+                        <div class="col">
+                            <label for="location">Location</label>
+                            <select id="location" name="location" class="form-control">
+                                <option value="Ashland">Ashland, VA</option>
+                                <option value="Collier">Collier County, FL</option>
+                                <option value="Contra Costa">Contra Costa County, CA</option>
+                                <option value="Indianapolis">Indianapolis, IN</option>
+                                <option value="Kansas">Kansas City, MO</option>
+                                <option value="Memphis">Memphis, TN</option>
+                                <option value="Santa Fe">Santa Fe, NM</option>
+                                <option value="Salt Lake">Salt Lake City, UT</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="location">Crime Type</label>
+                            <select name="location" class="form-control">
+                                <option value="Missing Person">Missing Person</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- 2nd Form Row -->
+                    <div class="form-row">
+                        <div class="col spacer">
+                            <label class="control-label" for="start-date">Start Date</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+                                </div>
+                                <input class="form-control" id="start-date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                            </div>
+                        </div>
+                        <div class="col spacer">
+                            <label class="control-label" for="end-date">End Date</label>
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
+                                </div>
+                                <input class="form-control" id="end-date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/app.js"></script>
+</body>
+</html>

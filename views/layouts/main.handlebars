@@ -1,15 +1,42 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/styles/styles.css" media="screen" title="no title" charset="utf-8">
-  <title>Home Page</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/home.css">
+    <!-- jQuery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- BootStrap Script -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- FontAwesome -->
+    <script src="https://kit.fontawesome.com/eeaaa00cac.js"></script>
+    <title>Case by Case</title>
 </head>
+<body id="static">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" id="brand" href="/"><img src="img/logo.png" class="img-fluid smLogo" alt="Responsive image"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Display items to the right -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/about">About&nbsp;</a>
+            <a class="nav-item nav-link" href="/contact"><i class="far fa-paper-plane menuIcons"></i>&nbsp;Contact Us</a>
+            <a class="nav-item nav-link" href="#"><i class="fas fa-user-secret userIcon"></i>&nbsp;<span class="member-name"></span></a>
+        </div>
+    </nav>
+    <!-- Main Content -->
+    <div class="container">
+        {{{body}}}
+    </div>
 
-<body>
-  {{{body}}}
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/app.js"></script>
 </body>
-
 </html>
