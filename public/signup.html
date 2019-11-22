@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles/styles.css">
+    <!-- Script -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/eeaaa00cac.js"></script>
+    <title>Case by Case: Sign-Up</title>
+</head>
+<body id="static">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <a class="navbar-brand" id="brand" href="/"><img src="img/logo.png" class="img-fluid smLogo" alt="Responsive image"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Display items to the right -->
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+            <a class="nav-item nav-link" href="/about">About&nbsp;</a>
+            <a class="nav-item nav-link" href="/contact"><i class="far fa-paper-plane menuIcons"></i>&nbsp;Contact Us</a>
+            <a class="nav-item nav-link" href="/signup"><i class="fas fa-user-plus menuIcons"></i>&nbsp;Sign-Up&nbsp;</a>
+            <!-- Login Dropdown -->
+            <div class="dropdown">
+                <button type="button" class="btn btn-dropDown"><i class="fas fa-sign-in-alt"></i>&nbsp;Login</button>
+                <div class="dropdown-menu p-3">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Username" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" placeholder="Password" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" class="btn-login" value="Submit" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4"></div>
+            <div class="col-md-4">
+                <form class="signup">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Username</label>
+                        <input type="text" class="form-control" id="username-input" placeholder="Enter username">
+                    </div>
+                    <div class="form-group">
+                        <label for="emailAddress">Email address</label>
+                        <input type="email" class="form-control" id="email-input" aria-describedby="emailHelp" placeholder="Enter email">
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password-input" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-secondary float-right">Submit</button>
+                    <br><br>
+                    <p>Or log in <a href="/">here</a></p>
+                </form>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </div>
+
+    <!-- Javascript -->
+    <script type="text/javascript" src="js/signup.js"></script>
+</body>
+</html>
