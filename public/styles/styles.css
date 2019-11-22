@@ -113,3 +113,7 @@ header .overlay {
 .menuIcons {
   color: #85B598;
 }
+
+.card, .card-header, .card-body, .card-text {
+  color: blue;
+}

@@ -1,0 +1,24 @@
+{{each missingPerson}}
+<div class="card">
+    <h6 class="card-header mb-3">
+        {{First_Name}} {{Middle_Name}} {{Last_Name}}
+        <button class="btn btn-light float-right ext-btn"><i class="fas fa-external-link-alt"></i></button>
+    </h6>
+    <div class="row no-gutters">
+        <div class="col-md-2">
+            <img src="https://via.placeholder.com/100" class="card-img">
+        </div>
+        <div class="col-md-10">
+            <div class="card-body">
+                <p class="card-text"><strong>Date of Last Contact:</strong> {{Date_Of_Last_Contact}}</p>
+                <p class="card-text"><strong>Area of Last Contact:</strong> {{City_Of_Last_Contact}}, {{State_Of_Last_Contact}}</p>
+                <p class="card-text"><strong>Current Age:</strong> {{Current_Age_From}}</p>
+                <p class="card-text"><strong>Race/Ethnicity:</strong> {{Race_Ethnicity}}</p>
+                <p class="card-text float-right"><small class="text-muted">Last updated {{Modified_Date_Time}}</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
+<br>
+<a href="/home">← Back To Search</a>

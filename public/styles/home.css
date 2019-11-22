@@ -40,3 +40,7 @@ body {
 .member-name {
   color: #FFF6E5;
 }
+
+.card, .ext-btn {
+  color: #313131;
+}
