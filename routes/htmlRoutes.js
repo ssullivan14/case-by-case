@@ -29,27 +29,11 @@ module.exports = function(app) {
   });
 
    // Load members home page
-   app.get("/home", function(req, res) {
+   app.get("/home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   }); 
 
-  // example of a locked down route
-  app.get("/members", isAuthenticated, function(req, res) {
-    res.sendFile(path.join(__dirname, "../public/members.html"));
-    // with handlebars:
-    // db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-    //   res.render("example", {
-    //     example: dbExample
-    //   });
-    // });
-    // });
-  });
-
-
-  app.get("/search", function(req, res) {
-    // Here we add an "include" property to our options in our findAll query
-    // We set the value to an array of the models we want to include in a left outer join
-    // In this case, just db.Post
+  app.get("/search", function(req, res) {  
     console.log(req.query);
     
     db.Person_missing.findAll({
@@ -60,6 +44,10 @@ module.exports = function(app) {
     }).then(function(dbPerson_missing) {
         console.log(dbPerson_missing);
     });
+  });
+
+  app.get("/hbs", function(req, res) {
+    res.render('namus');
   });
 
   // Render 404 page for any unmatched routes
