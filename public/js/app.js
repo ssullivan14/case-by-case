@@ -38,9 +38,12 @@ $(document).ready(function(){
 
         console.log(criteria);
 
-        $.get("/search", criteria).then(function (data) {
-            // console.log(data);
-        });
-        
+        $.ajax({
+            "url": "/api/namus_data",
+            "method": "GET",
+            "data": criteria
+        }).then(function(response){
+            console.log(response);
+        });        
     });
 });
