@@ -21,4 +21,26 @@ $(document).ready(function(){
         autoclose: true,
       };
       date_input.datepicker(options);
+
+      // On submit click
+      $("#submit").on("click", function (event) {
+        event.preventDefault()
+
+        city = ($("#location").val().split(","))[0];
+        state = ($("#location").val().split(","))[1].trim();
+
+        var criteria = {
+            City_Of_Last_Contact: city,
+            State_Of_Last_Contact: state,
+            start_date: $("#start-date").val(),
+            end_date: $("#end-date").val()
+        }
+
+        console.log(criteria);
+
+        $.get("/search", criteria).then(function (data) {
+            // console.log(data);
+        });
+        
+    });
 });
