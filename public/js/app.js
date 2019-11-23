@@ -1,3 +1,38 @@
+// var moment = require("moment");
+
+function capCrime(crimestr){
+    return crimestr.charAt(0).toUpperCase() + crimestr.slice(1);
+};
+
+function formatCrime(crime) {
+    var city = $("select[name='location'").val();
+    if(city = "Ashland"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Collier"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Contra Costa"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Indianapolis"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Kansas"){
+        crimeFormat = capCrime(userCrime);
+        return crimeFormat;
+    } else if(city = "Memphis"){
+        crimeFormat = capCrime(userCrime);
+        return crimeFormat;
+    } else if(city = "Santa Fe"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Salt Lake"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat
+    };
+};
+
 $(document).ready(function(){
     // GET request to determine which user is logged in
     $.get("/api/user_data").then(function(data) {
@@ -22,10 +57,77 @@ $(document).ready(function(){
       };
       date_input.datepicker(options);
 
-      // On submit click
-      $("#submit").on("click", function (event) {
-        event.preventDefault()
+  // SOCRATA SEARCH
+      jQuery.ajaxPrefilter(function(options) {
+        if (options.crossDomain && jQuery.support.cors) {
+            options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
+        }
+    });
 
+    $("#subBtn").click(function(){
+        event.preventDefault();
+        var userStart = $("#start-date").val();
+        var userEnd = $("#end-date").val();
+        var userCrime = $("#crimeType").val().split(' ').join('+');
+        var urlCity;
+        var url = $("#location").val();
+        console.log(url);
+        switch (url) {
+
+            case "Ashland": 
+                urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
+                break;
+
+            case "Collier":
+                urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
+                break;
+
+            case "Contra Costa":
+                urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
+                break;
+            
+            case "Indianapolis": 
+                urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
+                console.log(urlCity)
+                break;
+
+            case "Kansas":
+                urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
+                break;
+
+            case "Memphis":
+                urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
+                break;
+
+            case "Santa Fe":
+                urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
+                break;
+
+            case "Salt Lake":
+                urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
+                break;
+
+
+        };
+
+        var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+        var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+        console.log(startDate)
+        var crimeFormat = userCrime.toUpperCase()
+        console.log(crimeFormat)
+        var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
+        console.log(urlCity + params)
+        $.ajax({
+            "url": urlCity + params,
+            "method": "GET",
+        }).then(function(response) {
+            console.log(response.length)
+            console.log(response)
+        });
+    });
+    
+        // NAMUS SEARCH
+  
         city = ($("#location").val().split(","))[0];
         state = ($("#location").val().split(","))[1].trim();
 
@@ -45,5 +147,5 @@ $(document).ready(function(){
         }).then(function(response){
             console.log(response);
         });        
-    });
+    }); 
 });

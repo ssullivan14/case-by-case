@@ -49,3 +49,6 @@ Geo_Point_2D VARCHAR(255),
 
 PRIMARY KEY (item_id)
 );
+
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'password';
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'password';

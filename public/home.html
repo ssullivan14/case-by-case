@@ -56,9 +56,16 @@
                             </select>
                         </div>
                         <div class="col">
-                            <label for="crimeType">Crime Type</label>
-                            <select name="crimeType" class="form-control">
+                            <label for="location">Crime Type</label>
+                            <select name="location" id="crimeType" class="form-control">
+                                <option value="assault">Assault</option>
+                                <option value="battery">Battery</option>
+                                <option value="homocide">Homocide</option>
                                 <option value="Missing Person">Missing Person</option>
+                                <option value="murder">Murder</option>
+                                <option value="rape">Rape</option>
+                                <option value="sexual">Sexual Criminal Acts</option>
+                                <option value="shot">Shots</option>
                             </select>
                         </div>
                     </div>
@@ -83,13 +90,14 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" id="submit" class="btn btn-secondary float-right">Submit</button>
+                    <button type="submit" id = "subBtn" class="btn btn-secondary float-right">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
