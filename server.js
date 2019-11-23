@@ -6,6 +6,7 @@ var db = require("./models");
 var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require("./config/passport");
+var moment = require("moment");
 
 // Setup port
 var app = express();
@@ -15,7 +16,6 @@ var PORT = process.env.PORT || 3000;
 app.use(bodyParser.urlencoded({ extended: false })); //For body parser
 app.use(bodyParser.json());
 app.use(express.static("public"));
-
 // Handlebars
 app.engine(
   "handlebars",
