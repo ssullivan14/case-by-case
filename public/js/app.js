@@ -94,6 +94,20 @@ $(document).ready(function(){
                 "data": criteria
             }).then(function(response){
                 console.log(response);
+                    //console.log(response[0]);
+                    //console.log("First Name: " + response[0].First_Name)
+                  for (i in response) {
+                    
+                      console.log("First Name: " + response[i].First_Name);
+                      console.log("Last Name: " + response[i].Last_Name);
+                      console.log("Gender: " + response[i].Gender);
+                      console.log("Ethnicity: " + response[i].Race_Ethnicity);
+                      console.log("State of Last Contact: " + response[i].State_Of_Last_Contact);
+                      console.log("County of Last Contact: " + response[i].County_Of_Last_Contact);
+                      console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
+                      console.log("Current Age: " + response[i].Current_Age_From);
+                      console.log("Picture: " + response[i].img);
+                     }
             });        
         } else {
             // SOCRATA SEARCH
