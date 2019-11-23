@@ -31,6 +31,25 @@ module.exports = function(app) {
    // Load members home page
    app.get("/home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
+  }); 
+
+  app.get("/search", function(req, res) {  
+    console.log(req.query);
+    
+    db.Person_missing.findAll({
+      where: {
+        City_Of_Last_Contact: req.query.City_Of_Last_Contact,
+        State_Of_Last_Contact: req.query.State_Of_Last_Contact
+      }
+    }).then(function(dbPerson_missing) {
+        console.log(dbPerson_missing);
+    });
+  });
+
+  app.get("/hbs", function(req, res) {
+    res.render('namus');
+  });
+
   });
 
   // Render 404 page for any unmatched routes

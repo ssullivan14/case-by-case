@@ -53,4 +53,10 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/namus_data", function(req, res) {   
+    db.Person_missing.findAll({}).then(function(data) {
+        res.json(data);
+    });
+  });
 };
