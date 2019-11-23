@@ -59,9 +59,12 @@ module.exports = function(sequelize, DataTypes) {
     Geo_Shape : {
       type : DataTypes.STRING(255),
     },
-    Geo_Point_2D : {
+    Latitude : {
       type : DataTypes.STRING(255),
     },
+    Longitude : {
+      type : DataTypes.STRING(255),
+    }
   },
   {
     timestamps : false,
