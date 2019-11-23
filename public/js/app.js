@@ -68,84 +68,88 @@ $(document).ready(function(){
         event.preventDefault();
         var userStart = $("#start-date").val();
         var userEnd = $("#end-date").val();
+        var searchType = $("#crimeType").val();
         var userCrime = $("#crimeType").val().split(' ').join('+');
         var urlCity;
         var url = $("#location").val();
         console.log(url);
-        switch (url) {
 
-            case "Ashland": 
-                urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
-                break;
+        if(searchType == "Missing Person") {
+            // NAMUS SEARCH
+            city = ($("#location").val().split(","))[0];
+            state = ($("#location").val().split(","))[1].trim();
 
-            case "Collier":
-                urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
-                break;
+            var criteria = {
+                City_Of_Last_Contact: city,
+                State_Of_Last_Contact: state,
+                start_date: $("#start-date").val(),
+                end_date: $("#end-date").val()
+            }
 
-            case "Contra Costa":
-                urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
-                break;
-            
-            case "Indianapolis": 
-                urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
-                console.log(urlCity)
-                break;
+            console.log(criteria);
 
-            case "Kansas":
-                urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
-                break;
+            $.ajax({
+                "url": "/api/namus_data",
+                "method": "GET",
+                "data": criteria
+            }).then(function(response){
+                console.log(response);
+            });        
+        } else {
+            // SOCRATA SEARCH
+            switch (url) {
 
-            case "Memphis":
-                urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
-                break;
+                case "Ashland, VA": 
+                    urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
+                    break;
 
-            case "Santa Fe":
-                urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
-                break;
+                case "Collier County, FL":
+                    urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
+                    break;
 
-            case "Salt Lake":
-                urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
-                break;
+                case "Contra Costa County, CA":
+                    urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
+                    break;
+                
+                case "Indianapolis, IN": 
+                    urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
+                    console.log(urlCity)
+                    break;
+
+                case "Kansas City, MO":
+                    urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
+                    break;
+
+                case "Memphis, TN":
+                    urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
+                    break;
+
+                case "Santa Fe, NM":
+                    urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
+                    break;
+
+                case "Salt Lake City, UT":
+                    urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
+                    break;
 
 
-        };
+            };
 
-        var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
-        var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
-        console.log(startDate)
-        var crimeFormat = userCrime.toUpperCase()
-        console.log(crimeFormat)
-        var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
-        console.log(urlCity + params)
-        $.ajax({
-            "url": urlCity + params,
-            "method": "GET",
-        }).then(function(response) {
-            console.log(response.length)
-            console.log(response)
-        });
-    });
-    
-        // NAMUS SEARCH
-  
-        city = ($("#location").val().split(","))[0];
-        state = ($("#location").val().split(","))[1].trim();
-
-        var criteria = {
-            City_Of_Last_Contact: city,
-            State_Of_Last_Contact: state,
-            start_date: $("#start-date").val(),
-            end_date: $("#end-date").val()
+            var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+            var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+            console.log(startDate)
+            var crimeFormat = userCrime.toUpperCase()
+            console.log(crimeFormat)
+            var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
+            console.log(urlCity + params)
+            $.ajax({
+                "url": urlCity + params,
+                "method": "GET",
+            }).then(function(response) {
+                console.log(response.length)
+                console.log(response)
+            });
         }
+    });
+}); 
 
-        console.log(criteria);
-
-        $.ajax({
-            "url": "/api/namus_data",
-            "method": "GET",
-            "data": criteria
-        }).then(function(response){
-            console.log(response);
-        });        
-    }); 
-});
