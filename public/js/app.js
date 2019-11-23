@@ -1,3 +1,5 @@
+// var moment = require("moment");
+
 function capCrime(crimestr){
     return crimestr.charAt(0).toUpperCase() + crimestr.slice(1);
 };
@@ -59,58 +61,71 @@ $(document).ready(function(){
             options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
         }
     });
-    var userStart = "2018-01-10";
-    var userEnd = "2019-01-10";
-    var userCrime = "Larceny"
-    var urlCity;
-    switch (url) {
 
-        case "indianapolis": 
-            urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
-            break;
+    $("#subBtn").click(function(){
+        event.preventDefault();
+        var userStart = $("#start-date").val();
+        var userEnd = $("#end-date").val();
+        var userCrime = $("#crimeType").val().split(' ').join('+');
+        var urlCity;
+        var url = $("#location").val();
+        console.log(url);
+        switch (url) {
 
-        case "ashland": 
-            urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
-            break;
+            case "Ashland": 
+                urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
+                break;
 
-        case "memphis":
-            urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
-            break;
+            case "Collier":
+                urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
+                break;
 
-        case "contraCosta":
-            urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
-            break;
+            case "Contra Costa":
+                urlCity = "https://moto.data.socrata.com/resource/vsr6-kf7i.json";
+                break;
+            
+            case "Indianapolis": 
+                urlCity = "https://moto.data.socrata.com/resource/n3wc-t646.json";
+                console.log(urlCity)
+                break;
 
-        case "collier":
-            urlCity = "https://moto.data.socrata.com/resource/a6t8-qi8u.json";
-            break;
+            case "Kansas":
+                urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
+                break;
 
-        case "santafe":
-            urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
-            break;
+            case "Memphis":
+                urlCity = "https://moto.data.socrata.com/resource/m8mc-h4hu.json";
+                break;
 
-        case "saltLakeCity":
-            urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
-            break;
+            case "Santa Fe":
+                urlCity = "https://moto.data.socrata.com/resource/sf3a-evcx.json";
+                break;
 
-        case "kansasCity":
-            urlCity = "https://moto.data.socrata.com/resource/6vhr-dqzs.json";
-            break;
-    };
+            case "Salt Lake":
+                urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
+                break;
 
-    var startDate = userStart + "T00:00:00"
-    var endDate = userEnd + "T23:59:59"
-    var crimeFormat = userCrime.toUpperCase()
-    console.log(crimeFormat)
-    var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
-    
-    $.ajax({
-        "url": urlCity[0].indianapolis + params,
-        "method": "GET",
-    }).then(function(response) {
-        console.log(response.length)
-        console.log(response)
+
+        };
+
+        var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+        var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
+        console.log(startDate)
+        var crimeFormat = userCrime.toUpperCase()
+        console.log(crimeFormat)
+        var params = "?$where=(incident_datetime+between+'"+startDate+"'+and+'"+endDate+"')+AND+(incident_type_primary+like+'%25"+crimeFormat+"%25')";
+        console.log(urlCity + params)
+        $.ajax({
+            "url": urlCity + params,
+            "method": "GET",
+        }).then(function(response) {
+            console.log(response.length)
+            console.log(response)
+        });
     });
+    
+
+
 
 
 

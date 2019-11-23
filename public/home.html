@@ -57,7 +57,7 @@
                         </div>
                         <div class="col">
                             <label for="location">Crime Type</label>
-                            <select name="location" class="form-control">
+                            <select name="location" id="crimeType" class="form-control">
                                 <option value="Missing Person">Missing Person</option>
                             </select>
                         </div>
@@ -83,13 +83,14 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-secondary float-right">Submit</button>
+                    <button type="submit" id = "subBtn" class="btn btn-secondary float-right">Submit</button>
                 </form>
             </div>
         </div>
     </div>
 
     <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script type="text/javascript" src="js/app.js"></script>
 </body>
 </html>
