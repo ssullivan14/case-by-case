@@ -53,4 +53,15 @@ module.exports = function(app) {
       });
     }
   });
+
+  app.get("/api/namus_data", function(req, res) {   
+    db.Person_missing.findAll({
+      where: {
+        City_Of_Last_Contact: req.query.City_Of_Last_Contact,
+        State_Of_Last_Contact: req.query.State_Of_Last_Contact
+      }
+    }).then(function(data) {
+        res.json(data);
+    });
+  });
 };

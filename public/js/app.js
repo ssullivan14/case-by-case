@@ -56,6 +56,8 @@ $(document).ready(function(){
         autoclose: true,
       };
       date_input.datepicker(options);
+
+  // SOCRATA SEARCH
       jQuery.ajaxPrefilter(function(options) {
         if (options.crossDomain && jQuery.support.cors) {
             options.url = 'https://cors-anywhere.herokuapp.com/' + options.url;
@@ -124,10 +126,26 @@ $(document).ready(function(){
         });
     });
     
+        // NAMUS SEARCH
+  
+        city = ($("#location").val().split(","))[0];
+        state = ($("#location").val().split(","))[1].trim();
 
+        var criteria = {
+            City_Of_Last_Contact: city,
+            State_Of_Last_Contact: state,
+            start_date: $("#start-date").val(),
+            end_date: $("#end-date").val()
+        }
 
+        console.log(criteria);
 
-
-
- 
+        $.ajax({
+            "url": "/api/namus_data",
+            "method": "GET",
+            "data": criteria
+        }).then(function(response){
+            console.log(response);
+        });        
+    }); 
 });
