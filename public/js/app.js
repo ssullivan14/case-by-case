@@ -33,6 +33,9 @@ function formatCrime(crime) {
     };
 };
 
+// Hide table on load
+$("#tableSearchResults").hide();
+
 $(document).ready(function(){
     // GET request to determine which user is logged in
     $.get("/api/user_data").then(function(data) {
@@ -152,7 +155,7 @@ $(document).ready(function(){
                             <br>
                     `
 
-                    $('#cardSearchResults').append(missingPersonCard);
+                    $('#cardSearchResluts').append(missingPersonCard);
 
                      }
             });        
@@ -196,6 +199,7 @@ $(document).ready(function(){
 
             };
 
+            $("#tableSearchResults").show();
             var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
             var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
             console.log(startDate)
@@ -209,6 +213,28 @@ $(document).ready(function(){
             }).then(function(response) {
                 console.log(response.length)
                 console.log(response)
+
+                for (i in response) {
+                    console.log("Case Number: " + response[i].case_number);
+                    console.log("Incident Date/Time: " + response[i].incident_datetime);
+                    console.log("Incident Day of Week: " + response[i].day_of_week);
+                    console.log("Incident Type: " + response[i].parent_incident_type);
+                    console.log("Incident Description: " + response[i].incident_description);
+                    console.log("Address: " + response[i].address_1);
+                    console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
+                
+                    incidentTableRow = `
+                    <tr>
+                    <th scope="row">${response[i].case_number}</th>
+                    <td>${response[i].incident_datetime}</td>
+                    <td>${response[i].day_of_week}</td>
+                    <td>${response[i].incident_description}</td>
+                    <td>${response[i].address_1}</td>
+                    <td>${response[i].city}, ${response[i].state} ${response[i].zip}</td>
+                    </tr>
+                    `
+                    $('#socrataData').append(incidentTableRow);
+                }
             });
         }
     });
