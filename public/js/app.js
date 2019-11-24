@@ -65,6 +65,7 @@ $(document).ready(function(){
     });
 
     $("#subBtn").click(function(){
+        $('#cardSearchResults').empty();
         event.preventDefault();
         var userStart = $("#start-date").val();
         var userEnd = $("#end-date").val();
@@ -107,6 +108,41 @@ $(document).ready(function(){
                       console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
                       console.log("Current Age: " + response[i].Current_Age_From);
                       console.log("Picture: " + response[i].img);
+
+                      var cardFirstName = response[i].First_Name;
+                      var cardLastName = response[i].Last_Name;
+                      var cardGender = response[i].Gender;
+                      var cardEthnicity = response[i].Race_Ethnicity;
+                      var cardLastContact = response[i].State_Of_Last_Contact;
+                      var cardAreaLastContact = response[i].County_Of_Last_Contact;
+                      var cardAgeMissing = response[i].Computed_Missing_Min_Age;
+                      var cardCurrentAge = response[i].Current_Age_From;
+                      var cardPicture = response[i].img;
+
+                      missingPersonCard = `
+                                <div class="card">
+                                <h6 class="card-header mb-3">
+                                   ${cardFirstName} ${cardLastName}
+                                    <button class="btn btn-light float-right ext-btn"><i class="fas fa-external-link-alt"></i></button>
+                                </h6>
+                                <div class="row no-gutters">
+                                    <div class="col-md-2">
+                                        <img src="${cardPicture}" class="card-img">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <div class="card-body">
+                                            <p class="card-text"><strong>Date of Last Contact: </strong> ${cardLastContact}</p>
+                                            <p class="card-text"><strong>Area of Last Contact: </strong> ${cardAreaLastContact}, ${cardLastContact}</p>
+                                            <p class="card-text"><strong>Current Age:</strong> ${cardCurrentAge}</p>
+                                            <p class="card-text"><strong>Race/Ethnicity:</strong> ${cardEthnicity}</p>
+                                            <p class="card-text float-right"><small class="text-muted">Last updated {{Modified_Date_Time}}</small></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    `
+                    $('#cardSearchResults').append(missingPersonCard);
+
                      }
             });        
         } else {
