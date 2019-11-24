@@ -66,6 +66,8 @@ $(document).ready(function(){
 
     $("#subBtn").click(function(){
         $('#cardSearchResults').empty();
+        $('#searchdiv').hide();
+        
         event.preventDefault();
         var userStart = $("#start-date").val();
         var userEnd = $("#end-date").val();
@@ -118,6 +120,7 @@ $(document).ready(function(){
                       var cardAgeMissing = response[i].Computed_Missing_Min_Age;
                       var cardCurrentAge = response[i].Current_Age_From;
                       var cardPicture = response[i].img;
+                      var cardDateLastContact = response[i].Date_Of_Last_Contact;
 
                       missingPersonCard = `
                                 <div class="card">
@@ -131,7 +134,7 @@ $(document).ready(function(){
                                     </div>
                                     <div class="col-md-10">
                                         <div class="card-body">
-                                            <p class="card-text"><strong>Date of Last Contact: </strong> ${cardLastContact}</p>
+                                            <p class="card-text"><strong>Date of Last Contact: </strong> ${cardDateLastContact}</p>
                                             <p class="card-text"><strong>Area of Last Contact: </strong> ${cardAreaLastContact}, ${cardLastContact}</p>
                                             <p class="card-text"><strong>Current Age:</strong> ${cardCurrentAge}</p>
                                             <p class="card-text"><strong>Race/Ethnicity:</strong> ${cardEthnicity}</p>
@@ -141,6 +144,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                     `
+
                     $('#cardSearchResults').append(missingPersonCard);
 
                      }
