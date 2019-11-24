@@ -33,6 +33,9 @@ function formatCrime(crime) {
     };
 };
 
+// Hide table on load
+$("#tableSearchResults").hide();
+
 $(document).ready(function(){
     // GET request to determine which user is logged in
     $.get("/api/user_data").then(function(data) {
@@ -110,6 +113,7 @@ $(document).ready(function(){
                       console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
                       console.log("Current Age: " + response[i].Current_Age_From);
                       console.log("Picture: " + response[i].img);
+                      console.log("Link: " +response[i].Link);
 
                       var cardFirstName = response[i].First_Name;
                       var cardLastName = response[i].Last_Name;
@@ -121,31 +125,37 @@ $(document).ready(function(){
                       var cardCurrentAge = response[i].Current_Age_From;
                       var cardPicture = response[i].img;
                       var cardDateLastContact = response[i].Date_Of_Last_Contact;
+                      var LastModified = response[i].Modified_Date_Time;
+                      var cardLastModified = moment(LastModified).format('MM/DD/YYYY, h:mm:ss a');
+                      var cardLink = response[i].Link;
 
                       missingPersonCard = `
-                                <div class="card">
-                                <h6 class="card-header mb-3">
+                            <div class="card">
+                                <h5 class="card-header mb-3">
                                    ${cardFirstName} ${cardLastName}
-                                    <button class="btn btn-light float-right ext-btn"><i class="fas fa-external-link-alt"></i></button>
-                                </h6>
+                                    <a href="${cardLink}" target="_blank" class="btn btn-light float-right ext-btn"><i class="fas fa-external-link-alt"></i></a>
+                                </h5>
                                 <div class="row no-gutters">
                                     <div class="col-md-2">
                                         <img src="${cardPicture}" class="card-img">
                                     </div>
                                     <div class="col-md-10">
                                         <div class="card-body">
-                                            <p class="card-text"><strong>Date of Last Contact: </strong> ${cardDateLastContact}</p>
-                                            <p class="card-text"><strong>Area of Last Contact: </strong> ${cardAreaLastContact}, ${cardLastContact}</p>
-                                            <p class="card-text"><strong>Current Age:</strong> ${cardCurrentAge}</p>
+                                            <p class="card-text"><strong>Area of Last Contact: </strong> ${cardAreaLastContact}, ${cardLastContact}<br>
+                                            <strong>Date of Last Contact: </strong> ${cardDateLastContact}</p>    
+                                            <p class="card-text"><strong>Age at Time of Disappearance:</strong> ${cardAgeMissing}<br>
+                                            <strong>Current Age:</strong> ${cardCurrentAge}</p>
                                             <p class="card-text"><strong>Race/Ethnicity:</strong> ${cardEthnicity}</p>
-                                            <p class="card-text float-right"><small class="text-muted">Last updated {{Modified_Date_Time}}</small></p>
+                                            <p class="card-text"><strong>Gender:</strong> ${cardGender}</p>
+                                            <p class="card-text float-right"><small class="text-muted">Last updated ${cardLastModified}</small></p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <br>
                     `
 
-                    $('#cardSearchResults').append(missingPersonCard);
+                    $('#cardSearchResluts').append(missingPersonCard);
 
                      }
             });        
@@ -189,6 +199,7 @@ $(document).ready(function(){
 
             };
 
+            $("#tableSearchResults").show();
             var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
             var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss')
             console.log(startDate)
@@ -202,6 +213,30 @@ $(document).ready(function(){
             }).then(function(response) {
                 console.log(response.length)
                 console.log(response)
+
+                for (i in response) {
+                    console.log("Case Number: " + response[i].case_number);
+                    console.log("Incident Date/Time: " + response[i].incident_datetime);
+                    console.log("Incident Day of Week: " + response[i].day_of_week);
+                    console.log("Incident Type: " + response[i].parent_incident_type);
+                    console.log("Incident Description: " + response[i].incident_description);
+                    console.log("Address: " + response[i].address_1);
+                    console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
+                
+                    incidentTime = moment(response[i].incident_datetime).format('MM/DD/YYYY, h:mm a');
+
+                    incidentTableRow = `
+                    <tr>
+                    <th scope="row">${response[i].case_number}</th>
+                    <td>${incidentTime}</td>
+                    <td>${response[i].day_of_week}</td>
+                    <td>${response[i].incident_description}</td>
+                    <td>${response[i].address_1}</td>
+                    <td>${response[i].city}, ${response[i].state} ${response[i].zip}</td>
+                    </tr>
+                    `
+                    $('#socrataData').append(incidentTableRow);
+                }
             });
         }
     });
