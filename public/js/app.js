@@ -122,7 +122,8 @@ $(document).ready(function(){
                       var cardCurrentAge = response[i].Current_Age_From;
                       var cardPicture = response[i].img;
                       var cardDateLastContact = response[i].Date_Of_Last_Contact;
-                      var cardLastModified = response[i].Modified_Date_Time;
+                      var LastModified = response[i].Modified_Date_Time;
+                      var cardLastModified = moment(LastModified).format('MM/DD/YYYY, h:mm:ss a');
                       var cardLink = response[i].Link;
 
                       missingPersonCard = `
