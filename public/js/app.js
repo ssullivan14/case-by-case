@@ -43,6 +43,7 @@ $(document).ready(function(){
         
         if (data.username) {
             $(".member-name").text(data.username);
+            $("#username").val(data.username);
         } else {
             // For testing
             $(".member-name").text("Default");
@@ -155,7 +156,7 @@ $(document).ready(function(){
                             <br>
                     `
 
-                    $('#cardSearchResluts').append(missingPersonCard);
+                    $('#cardSearchResults').append(missingPersonCard);
 
                      }
             });        
