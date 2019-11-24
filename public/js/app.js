@@ -223,10 +223,12 @@ $(document).ready(function(){
                     console.log("Address: " + response[i].address_1);
                     console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
                 
+                    incidentTime = moment(response[i].incident_datetime).format('MM/DD/YYYY, h:mm a');
+
                     incidentTableRow = `
                     <tr>
                     <th scope="row">${response[i].case_number}</th>
-                    <td>${response[i].incident_datetime}</td>
+                    <td>${incidentTime}</td>
                     <td>${response[i].day_of_week}</td>
                     <td>${response[i].incident_description}</td>
                     <td>${response[i].address_1}</td>
