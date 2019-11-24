@@ -37,7 +37,7 @@
     </nav>
     <div class="container">
         <div class="row">
-            <div class="col-md-12 text-left">
+            <div id=searchdiv class="col-md-12 text-left">
                 <form class="search" action="/search" method="post">
                     <h4 class="display-5"><i>SEARCH DATABASE</i></h4>
                     <!-- 1st Form Row -->
@@ -92,6 +92,18 @@
                     </div>
                     <button type="submit" id = "subBtn" class="btn btn-secondary float-right">Submit</button>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <!--Google Maps-->
+                <div id="map"></div>
+            </div>
+        </div>
+        <!--Search Results in Card Deck-->
+        <div class="row">
+            <div class="col-md-12">
+                <div id=cardSearchResults ></div>
             </div>
         </div>
     </div>
