@@ -61,6 +61,7 @@ function formatCrime(crime) {
 };
 
 // Hide table on load
+$("#map").hide();
 $("#tableSearchResults").hide();
 
 
@@ -101,6 +102,7 @@ $(document).ready(function(){
     $("#subBtn").click(function(){
         $('#cardSearchResults').empty();
         $('#searchdiv').hide();
+        $("#map").show();
         
         
         
