@@ -271,7 +271,7 @@ $(document).ready(function(){
                             uniPersImage = null;
                         }
 
-                        incidentTime = moment(response[i].datefound).format('MM/DD/YYYY, h:mm a');
+                        incidentTime = moment(response[i].date_found).format('MM/DD/YYYY');
 
                         if (uniPersImage === null) {
                             incidentTableRow = `
