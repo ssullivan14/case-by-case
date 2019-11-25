@@ -160,11 +160,13 @@ $(document).ready(function(){
                       var cardLink = response[i].Link;
 
                       missingPersonCard = `
-                            <div class="card">
-                                <h5 class="card-header mb-3">
-                                   ${cardFirstName} ${cardLastName}
-                                    <a href="${cardLink}" target="_blank" class="btn btn-light float-right ext-btn"><i class="fas fa-external-link-alt"></i></a>
-                                </h5>
+                            <div class="card text-white bg-dark">
+                                <div class="d-flex align-items-center">
+                                    <h5 class="highlight card-header mx-auto w-100">
+                                    ${cardFirstName} ${cardLastName}
+                                        <a href="${cardLink}" target="_blank" class="btn float-right ext-btn"><i class="fas fa-external-link-alt"></i></a>
+                                    </h5>
+                                </div>
                                 <div class="row no-gutters">
                                     <div class="col-md-2">
                                         <img src="${cardPicture}" class="card-img">
@@ -273,7 +275,7 @@ $(document).ready(function(){
 
                     incidentTableRow = `
                     <tr>
-                    <th scope="row">${response[i].case_number}</th>
+                    <th class="highlight" scope="row">${response[i].case_number}</th>
                     <td>${incidentTime}</td>
                     <td>${response[i].day_of_week}</td>
                     <td>${response[i].incident_description}</td>
