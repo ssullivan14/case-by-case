@@ -33,14 +33,14 @@ body {
   color: #85B598;
 }
 
-.userIcon {
+.userIcon, .highlight {
   color: #D8AC31;
 }
 
-.member-name {
+.member-name, .ext-btn {
   color: #FFF6E5;
 }
 
-.card, .ext-btn {
+.card {
   color: #313131;
 }
