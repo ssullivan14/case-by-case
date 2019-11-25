@@ -50,4 +50,8 @@ body {
   top: 200px;
   left: -55px;
   transform: rotate(90deg);
-  }
+}
+
+td {
+  white-space: normal !important;
+}

@@ -15,6 +15,7 @@ function noResults() {
     display = `<p class="lead text-center">No search results. Please try another query.</p>`
     $("#map").hide();
     $("#tableSearchResults").hide();
+    $("#unidentifiedTable").hide();
     $('#cardSearchResults').append(display);
 }
 
@@ -28,6 +29,9 @@ function formatCrime(crime) {
         crimeFormat = userCrime.toUpperCase();
         return crimeFormat;
     } else if(city = "Collier"){
+        crimeFormat = userCrime.toUpperCase();
+        return crimeFormat;
+    } else if(city = "Chicago"){
         crimeFormat = userCrime.toUpperCase();
         return crimeFormat;
     } else if(city = "Contra Costa"){
@@ -55,6 +59,7 @@ function formatCrime(crime) {
 $("#map").hide();
 $("#tableSearchResults").hide();
 $("#backSearch").hide();
+$("#unidentifiedTable").hide();
 
 
 
@@ -210,9 +215,99 @@ $(document).ready(function(){
                     }
                 }
             });        
+        } else if  (searchType == "unidentified persons") {
+            $("#unidentifiedTable").show();
+
+            var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss');
+            var endDate = moment.utc(userEnd, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss');
+            var params = "?$where=(date_found+between+'"+startDate+"'+and+'"+endDate+"')";
+
+            switch (url) {
+
+                case "Chicago, IL": 
+                    urlCity = "https://datacatalog.cookcountyil.gov/resource/y8dh-5w5c.json";
+                    break;
+
+                default: // Any other city
+                    noResults();
+                    break;
+            }
+
+            $.ajax({
+                "url": urlCity + params,
+                "method": "GET",
+            }).then(function(response) {
+                console.log(response.length);
+                console.log(response);
+
+                if (response.length == 0) {
+                    noResults();
+                } else {
+                    for (i in response) {
+                        googleMapsAddress = encodeURIComponent(response[i].location_found);
+                        
+                        $.ajax({
+                            "url": "https://maps.googleapis.com/maps/api/geocode/json?address=" + googleMapsAddress + "&key=AIzaSyAe3Pmw1qeIzHwcGHhDi9IARA6czt6uRDY",
+                            "method": "GET",
+                        }).then(function(mapsResponse) {
+                            lat = mapsResponse.results[0].geometry.location.lat;
+                            lng = mapsResponse.results[0].geometry.location.lng;
+
+                            // pushing data to location aray and converting to object                                
+                            temp['lat'] = parseFloat(lat);
+                            temp["lng"] = parseFloat(lng);
+                            locations.push(temp);
+
+                            // re-creating map centered / zoomed on location[0]
+                            console.log(locations);
+                            zoomOption = 10;
+                            centerOption = locations[0];
+                            initMap();
+                        });
+
+                        try {
+                            uniPersImage = response[i].image_1.url;
+                        } catch {
+                            uniPersImage = null;
+                        }
+
+                        incidentTime = moment(response[i].date_found).format('MM/DD/YYYY');
+
+                        if (uniPersImage === null) {
+                            incidentTableRow = `
+                            <tr>
+                            <th class="highlight" scope="row">${response[i].case_number}</th>
+                            <td>${incidentTime}</td>
+                            <td>${response[i].description}</td>
+                            <td>${response[i].location_found}</td>
+                            <td>${response[i].location_details}</td>
+                            <td></td>
+                            </tr>
+                            `
+                        } else {
+                            incidentTableRow = `
+                            <tr>
+                            <th class="highlight" scope="row">${response[i].case_number}</th>
+                            <td>${incidentTime}</td>
+                            <td>${response[i].description}</td>
+                            <td>${response[i].location_found}</td>
+                            <td>${response[i].location_details}</td>
+                            <td><a href="${response[i].image_1.url}" target="_blank" class="btn float-right ext-btn"><i class="fas fa-external-link-alt"></i></a></td>
+                            </tr>
+                            `
+                        }
+
+                        $('#unidentifiedData').append(incidentTableRow);
+                    }
+                }
+            });
         } else {
             // SOCRATA SEARCH
             switch (url) {
+
+                case "Chicago, IL": 
+                    urlCity = "https://moto.data.socrata.com/resource/xpmh-vvkq.json";
+                    break;
 
                 case "Ashland, VA": 
                     urlCity = "https://moto.data.socrata.com/resource/r4fp-j8h5.json";
@@ -247,7 +342,9 @@ $(document).ready(function(){
                     urlCity = "https://moto.data.socrata.com/resource/qbr3-v7gz.json";
                     break;
 
-
+                default: // Any other city
+                    noResults();
+                    break;
             };
             
             $("#tableSearchResults").show();
