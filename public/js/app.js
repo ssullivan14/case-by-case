@@ -262,7 +262,13 @@ $(document).ready(function(){
                     console.log("Incident Description: " + response[i].incident_description);
                     console.log("Address: " + response[i].address_1);
                     console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
-                
+                    console.log("Geo latitude: " + response[i].latitude);
+                    console.log("Geo longitude: " + response[i].longitude)
+
+                    var socrataLatitude =  response[i].latitude;
+                    var socrataLongitude =  response[i].longitude; 
+                    console.log("Geo Locations: " + socrataLatitude + socrataLongitude);
+                    
                     incidentTime = moment(response[i].incident_datetime).format('MM/DD/YYYY, h:mm a');
 
                     incidentTableRow = `
@@ -275,6 +281,18 @@ $(document).ready(function(){
                     <td>${response[i].city}, ${response[i].state} ${response[i].zip}</td>
                     </tr>
                     `
+
+                    // pushing data to location aray and converting to object                                
+                    temp['lat'] = parseFloat(socrataLatitude);
+                    temp["lng"] = parseFloat(socrataLongitude);
+                    locations.push(temp);
+
+                    // re-creating map centered / zoomed on location[0]
+                    console.log(locations);
+                    zoomOption = 10;
+                    centerOption = locations[0];
+                    initMap();
+
                     $('#socrataData').append(incidentTableRow);
                 }
             });
