@@ -46,9 +46,10 @@ function formatCrime(crime) {
     };
 };
 
-// Hide table on load
+// Hide elements on load
 $("#map").hide();
 $("#tableSearchResults").hide();
+$("#backSearch").hide();
 
 
 
@@ -89,7 +90,7 @@ $(document).ready(function(){
         $('#cardSearchResults').empty();
         $('#searchdiv').hide();
         $("#map").show();
-        
+        $("#backSearch").show();
         
         
         event.preventDefault();
