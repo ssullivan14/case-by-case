@@ -53,6 +53,7 @@
                             <label for="location">Location</label>
                             <select id="location" name="location" class="form-control">
                                 <option value="Ashland, VA">Ashland, VA</option>
+                                <option value="Chicago, IL">Chicago, IL</option>
                                 <option value="Collier County, FL">Collier County, FL</option>
                                 <option value="Contra Costa County, CA">Contra Costa County, CA</option>
                                 <option value="Indianapolis, IN">Indianapolis, IN</option>
@@ -63,7 +64,7 @@
                             </select>
                         </div>
                         <div class="col">
-                            <label for="location">Crime Type</label>
+                            <label for="location">Incident Type</label>
                             <select name="crimeType" id="crimeType" class="form-control">
                                 <option value="assault">Assault</option>
                                 <option value="battery">Battery</option>
@@ -73,6 +74,7 @@
                                 <option value="rape">Rape</option>
                                 <option value="sexual">Sexual Criminal Acts</option>
                                 <option value="shot">Shots</option>
+                                <option value="unidentified persons">Unidentified Persons</option>
                             </select>
                         </div>
                     </div>
@@ -132,6 +134,26 @@
                             </tr>
                         </thead>
                         <tbody id="socrataData"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        <!--Search Results in Table-->
+        <div class="row">
+            <div class="col-md-12">
+                <div id="unidentifiedTable">
+                    <table class="table table-striped table-dark">
+                        <thead>
+                            <tr>
+                            <th scope="col">Case Number</th>
+                            <th scope="col">Date Found</th>
+                            <th scope="col">Description</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Location Details</th>
+                            <th scope="col">Images</th>
+                            </tr>
+                        </thead>
+                        <tbody id="unidentifiedData"></tbody>
                         </table>
                     </div>
                 </div>
