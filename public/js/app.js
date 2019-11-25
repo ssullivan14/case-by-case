@@ -1,8 +1,8 @@
 //Google Map locations
 var locations = [];
 var temp = {};
-var zoom = 4;
-var center = {};
+var zoomOption;
+var centerOption = {};
  // test syntax
 //  var locations = [
 //     {lat: -31.563910, lng: 147.154312},
@@ -184,16 +184,17 @@ $(document).ready(function(){
                             </div>
                             <br>
                     `
-                    
-                    //locations.push(namusLocation);
-                    
+                    // pushing data to location aray and converting to object                                
                     temp['lat'] = parseFloat(namusLatitude);
                     temp["lng"] = parseFloat(namusLongitude);
                     locations.push(temp);
+
+                    // re-creating map centered / zoomed on location[0]
                     console.log(locations);
-                    zoom = 8;
-                    center = locations[0];
-                    initMap(center, zoom);
+                    zoomOption = 10;
+                    centerOption = locations[0];
+                    initMap();
+
                     $('#cardSearchResults').append(missingPersonCard);
 
                      }
