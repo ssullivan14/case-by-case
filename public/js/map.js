@@ -1,11 +1,9 @@
-
-  
-
-      function initMap() {
-
+ function initMap(center, zoom) {
+        zoom = "";
+        center = {};
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 3,
-          center: {lat: -28.024, lng: 140.887},
+          zoom: 4,
+          center: {lat: 37.090240, lng: -95.712891},
           styles: [
             {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
             {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},

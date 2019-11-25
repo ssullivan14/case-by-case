@@ -1,29 +1,15 @@
 //Google Map locations
-var locations = [
-    {lat: -31.563910, lng: 147.154312},
-    {lat: -33.718234, lng: 150.363181},
-    {lat: -33.727111, lng: 150.371124},
-    {lat: -33.848588, lng: 151.209834},
-    {lat: -33.851702, lng: 151.216968},
-    {lat: -34.671264, lng: 150.863657},
-    {lat: -35.304724, lng: 148.662905},
-    {lat: -36.817685, lng: 175.699196},
-    {lat: -36.828611, lng: 175.790222},
-    {lat: -37.750000, lng: 145.116667},
-    {lat: -37.759859, lng: 145.128708},
-    {lat: -37.765015, lng: 145.133858},
-    {lat: -37.770104, lng: 145.143299},
-    {lat: -37.773700, lng: 145.145187},
-    {lat: -37.774785, lng: 145.137978},
-    {lat: -37.819616, lng: 144.968119},
-    {lat: -38.330766, lng: 144.695692},
-    {lat: -39.927193, lng: 175.053218},
-    {lat: -41.330162, lng: 174.865694},
-    {lat: -42.734358, lng: 147.439506},
-    {lat: -42.734358, lng: 147.501315},
-    {lat: -42.735258, lng: 147.438000},
-    {lat: -43.999792, lng: 170.463352}
-  ]
+var locations = [];
+var temp = {};
+var zoom = 4;
+var center = {};
+ // test syntax
+//  var locations = [
+//     {lat: -31.563910, lng: 147.154312},
+//     {lat: -33.718234, lng: 150.363181},
+//     {lat: -33.727111, lng: 150.371124},
+//  ] 
+
 
 // var moment = require("moment");
 
@@ -148,8 +134,17 @@ $(document).ready(function(){
                       console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
                       console.log("Current Age: " + response[i].Current_Age_From);
                       console.log("Picture: " + response[i].img);
-                      console.log("Link: " +response[i].Link);
-
+                      console.log("Link: " + response[i].Link);
+                      console.log("Latitude: " + response[i].Latitude);
+                      console.log("Longitude: " + response[i].Longitude);
+                      
+                      
+                      var namusLatitude =  response[i].Latitude;
+                      var namusLongitude =  response[i].Longitude; 
+                      var namusLocation = `{lat: ${namusLatitude}, lng: ${namusLongitude}}`;
+                      var locationTest = namusLatitude + namusLongitude;
+                      console.log("Location Test: " + locationTest);
+                      console.log("NamusLocation: " + namusLocation);     
                       var cardFirstName = response[i].First_Name;
                       var cardLastName = response[i].Last_Name;
                       var cardGender = response[i].Gender;
@@ -189,7 +184,16 @@ $(document).ready(function(){
                             </div>
                             <br>
                     `
-
+                    
+                    //locations.push(namusLocation);
+                    
+                    temp['lat'] = parseFloat(namusLatitude);
+                    temp["lng"] = parseFloat(namusLongitude);
+                    locations.push(temp);
+                    console.log(locations);
+                    zoom = 8;
+                    center = locations[0];
+                    initMap(center, zoom);
                     $('#cardSearchResults').append(missingPersonCard);
 
                      }
