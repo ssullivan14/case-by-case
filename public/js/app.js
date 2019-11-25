@@ -11,7 +11,12 @@ var centerOption = {};
 //  ] 
 
 
-// var moment = require("moment");
+function noResults() {
+    display = `<p class="lead text-center">No search results. Please try another query.</p>`
+    $("#map").hide();
+    $("#tableSearchResults").hide();
+    $('#cardSearchResults').append(display);
+}
 
 function capCrime(crimestr){
     return crimestr.charAt(0).toUpperCase() + crimestr.slice(1);
@@ -122,45 +127,47 @@ $(document).ready(function(){
                 "data": criteria
             }).then(function(response){
                 console.log(response);
-                    //console.log(response[0]);
-                    //console.log("First Name: " + response[0].First_Name)
-                  for (i in response) {
-                    
-                      console.log("First Name: " + response[i].First_Name);
-                      console.log("Last Name: " + response[i].Last_Name);
-                      console.log("Gender: " + response[i].Gender);
-                      console.log("Ethnicity: " + response[i].Race_Ethnicity);
-                      console.log("State of Last Contact: " + response[i].State_Of_Last_Contact);
-                      console.log("County of Last Contact: " + response[i].County_Of_Last_Contact);
-                      console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
-                      console.log("Current Age: " + response[i].Current_Age_From);
-                      console.log("Picture: " + response[i].img);
-                      console.log("Link: " + response[i].Link);
-                      console.log("Latitude: " + response[i].Latitude);
-                      console.log("Longitude: " + response[i].Longitude);
-                      
-                      
-                      var namusLatitude =  response[i].Latitude;
-                      var namusLongitude =  response[i].Longitude; 
-                      var namusLocation = `{lat: ${namusLatitude}, lng: ${namusLongitude}}`;
-                      var locationTest = namusLatitude + namusLongitude;
-                      console.log("Location Test: " + locationTest);
-                      console.log("NamusLocation: " + namusLocation);     
-                      var cardFirstName = response[i].First_Name;
-                      var cardLastName = response[i].Last_Name;
-                      var cardGender = response[i].Gender;
-                      var cardEthnicity = response[i].Race_Ethnicity;
-                      var cardLastContact = response[i].State_Of_Last_Contact;
-                      var cardAreaLastContact = response[i].County_Of_Last_Contact;
-                      var cardAgeMissing = response[i].Computed_Missing_Min_Age;
-                      var cardCurrentAge = response[i].Current_Age_From;
-                      var cardPicture = response[i].img;
-                      var cardDateLastContact = response[i].Date_Of_Last_Contact;
-                      var LastModified = response[i].Modified_Date_Time;
-                      var cardLastModified = moment(LastModified).format('MM/DD/YYYY, h:mm:ss a');
-                      var cardLink = response[i].Link;
+                console.log(response.length);
 
-                      missingPersonCard = `
+                if (response.length == 0) {
+                    noResults();
+                } else {
+                    for (i in response) {                   
+                        console.log("First Name: " + response[i].First_Name);
+                        console.log("Last Name: " + response[i].Last_Name);
+                        console.log("Gender: " + response[i].Gender);
+                        console.log("Ethnicity: " + response[i].Race_Ethnicity);
+                        console.log("State of Last Contact: " + response[i].State_Of_Last_Contact);
+                        console.log("County of Last Contact: " + response[i].County_Of_Last_Contact);
+                        console.log("Age When Missing: " + response[i].Computed_Missing_Min_Age);
+                        console.log("Current Age: " + response[i].Current_Age_From);
+                        console.log("Picture: " + response[i].img);
+                        console.log("Link: " + response[i].Link);
+                        console.log("Latitude: " + response[i].Latitude);
+                        console.log("Longitude: " + response[i].Longitude);
+                        
+                        
+                        var namusLatitude =  response[i].Latitude;
+                        var namusLongitude =  response[i].Longitude; 
+                        var namusLocation = `{lat: ${namusLatitude}, lng: ${namusLongitude}}`;
+                        var locationTest = namusLatitude + namusLongitude;
+                        console.log("Location Test: " + locationTest);
+                        console.log("NamusLocation: " + namusLocation);     
+                        var cardFirstName = response[i].First_Name;
+                        var cardLastName = response[i].Last_Name;
+                        var cardGender = response[i].Gender;
+                        var cardEthnicity = response[i].Race_Ethnicity;
+                        var cardLastContact = response[i].State_Of_Last_Contact;
+                        var cardAreaLastContact = response[i].County_Of_Last_Contact;
+                        var cardAgeMissing = response[i].Computed_Missing_Min_Age;
+                        var cardCurrentAge = response[i].Current_Age_From;
+                        var cardPicture = response[i].img;
+                        var cardDateLastContact = response[i].Date_Of_Last_Contact;
+                        var LastModified = response[i].Modified_Date_Time;
+                        var cardLastModified = moment(LastModified).format('MM/DD/YYYY, h:mm:ss a');
+                        var cardLink = response[i].Link;
+
+                        missingPersonCard = `
                             <div class="card text-white bg-dark">
                                 <div class="d-flex align-items-center">
                                     <h5 class="highlight card-header mx-auto w-100">
@@ -186,21 +193,22 @@ $(document).ready(function(){
                                 </div>
                             </div>
                             <br>
-                    `
-                    // pushing data to location aray and converting to object                                
-                    temp['lat'] = parseFloat(namusLatitude);
-                    temp["lng"] = parseFloat(namusLongitude);
-                    locations.push(temp);
+                        `
+                        // pushing data to location aray and converting to object                                
+                        temp['lat'] = parseFloat(namusLatitude);
+                        temp["lng"] = parseFloat(namusLongitude);
+                        locations.push(temp);
 
-                    // re-creating map centered / zoomed on location[0]
-                    console.log(locations);
-                    zoomOption = 10;
-                    centerOption = locations[0];
-                    initMap();
+                        // re-creating map centered / zoomed on location[0]
+                        console.log(locations);
+                        zoomOption = 10;
+                        centerOption = locations[0];
+                        initMap();
 
-                    $('#cardSearchResults').append(missingPersonCard);
+                        $('#cardSearchResults').append(missingPersonCard);
 
-                     }
+                    }
+                }
             });        
         } else {
             // SOCRATA SEARCH
@@ -257,46 +265,50 @@ $(document).ready(function(){
                 console.log(response.length)
                 console.log(response)
 
-                for (i in response) {
-                    console.log("Case Number: " + response[i].case_number);
-                    console.log("Incident Date/Time: " + response[i].incident_datetime);
-                    console.log("Incident Day of Week: " + response[i].day_of_week);
-                    console.log("Incident Type: " + response[i].parent_incident_type);
-                    console.log("Incident Description: " + response[i].incident_description);
-                    console.log("Address: " + response[i].address_1);
-                    console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
-                    console.log("Geo latitude: " + response[i].latitude);
-                    console.log("Geo longitude: " + response[i].longitude)
+                if (response.length == 0) {
+                    noResults();
+                } else {
+                    for (i in response) {
+                        console.log("Case Number: " + response[i].case_number);
+                        console.log("Incident Date/Time: " + response[i].incident_datetime);
+                        console.log("Incident Day of Week: " + response[i].day_of_week);
+                        console.log("Incident Type: " + response[i].parent_incident_type);
+                        console.log("Incident Description: " + response[i].incident_description);
+                        console.log("Address: " + response[i].address_1);
+                        console.log("Location: " + response[i].city + ", " + response[i].state + " " + response[i].zip);
+                        console.log("Geo latitude: " + response[i].latitude);
+                        console.log("Geo longitude: " + response[i].longitude)
 
-                    var socrataLatitude =  response[i].latitude;
-                    var socrataLongitude =  response[i].longitude; 
-                    console.log("Geo Locations: " + socrataLatitude + socrataLongitude);
-                    
-                    incidentTime = moment(response[i].incident_datetime).format('MM/DD/YYYY, h:mm a');
+                        var socrataLatitude =  response[i].latitude;
+                        var socrataLongitude =  response[i].longitude; 
+                        console.log("Geo Locations: " + socrataLatitude + socrataLongitude);
+                        
+                        incidentTime = moment(response[i].incident_datetime).format('MM/DD/YYYY, h:mm a');
 
-                    incidentTableRow = `
-                    <tr>
-                    <th class="highlight" scope="row">${response[i].case_number}</th>
-                    <td>${incidentTime}</td>
-                    <td>${response[i].day_of_week}</td>
-                    <td>${response[i].incident_description}</td>
-                    <td>${response[i].address_1}</td>
-                    <td>${response[i].city}, ${response[i].state} ${response[i].zip}</td>
-                    </tr>
-                    `
+                        incidentTableRow = `
+                        <tr>
+                        <th class="highlight" scope="row">${response[i].case_number}</th>
+                        <td>${incidentTime}</td>
+                        <td>${response[i].day_of_week}</td>
+                        <td>${response[i].incident_description}</td>
+                        <td>${response[i].address_1}</td>
+                        <td>${response[i].city}, ${response[i].state} ${response[i].zip}</td>
+                        </tr>
+                        `
 
-                    // pushing data to location aray and converting to object                                
-                    temp['lat'] = parseFloat(socrataLatitude);
-                    temp["lng"] = parseFloat(socrataLongitude);
-                    locations.push(temp);
+                        // pushing data to location aray and converting to object                                
+                        temp['lat'] = parseFloat(socrataLatitude);
+                        temp["lng"] = parseFloat(socrataLongitude);
+                        locations.push(temp);
 
-                    // re-creating map centered / zoomed on location[0]
-                    console.log(locations);
-                    zoomOption = 10;
-                    centerOption = locations[0];
-                    initMap();
+                        // re-creating map centered / zoomed on location[0]
+                        console.log(locations);
+                        zoomOption = 10;
+                        centerOption = locations[0];
+                        initMap();
 
-                    $('#socrataData').append(incidentTableRow);
+                        $('#socrataData').append(incidentTableRow);
+                    }
                 }
             });
         }
