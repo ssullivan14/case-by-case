@@ -32,6 +32,15 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/contact_auth.html"));
   });
 
+  // Load about page
+  app.get("/about", function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/about.html"));
+  });
+
+  app.get("/member_auth", isAuthenticated, function(req, res) {
+    res.sendFile(path.join(__dirname, "../public/about_auth.html"));
+  });
+
    // Load members home page
    app.get("/home", isAuthenticated, function(req, res) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
