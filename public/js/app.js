@@ -1,15 +1,4 @@
-//Google Map locations
-var locations = [];
-var zoomOption;
-var centerOption = {};
- // test syntax
-//  var locations = [
-//     {lat: -31.563910, lng: 147.154312},
-//     {lat: -33.718234, lng: 150.363181},
-//     {lat: -33.727111, lng: 150.371124},
-//  ] 
-
-
+// FUNCTIONS
 function noResults() {
     display = `<p class="lead text-center">No search results. Please try another query.</p>`
     $("#map").hide();
@@ -54,12 +43,17 @@ function formatCrime(crime) {
     };
 };
 
+// VARIABLES
+var locations = [];
+var zoomOption;
+var centerOption = {};
+
+
 // Hide elements on load
 $("#map").hide();
 $("#tableSearchResults").hide();
 $("#backSearch").hide();
 $("#unidentifiedTable").hide();
-
 
 
 $(document).ready(function(){
@@ -216,6 +210,7 @@ $(document).ready(function(){
                 }
             });        
         } else if  (searchType == "unidentified persons") {
+            // Unidentified persons SOCRATA search
             $("#unidentifiedTable").show();
 
             var startDate = moment.utc(userStart, 'MM/DD/YYYY', true).format('YYYY-MM-DDTHH:mm:ss');
@@ -254,6 +249,7 @@ $(document).ready(function(){
                             lng = mapsResponse.results[0].geometry.location.lng;
 
                             // pushing data to location aray and converting to object                                
+                            var temp = {};
                             temp['lat'] = parseFloat(lat);
                             temp["lng"] = parseFloat(lng);
                             locations.push(temp);
@@ -302,7 +298,7 @@ $(document).ready(function(){
                 }
             });
         } else {
-            // SOCRATA SEARCH
+            // Other SOCRATA SEARCH
             switch (url) {
 
                 case "Chicago, IL": 
@@ -409,9 +405,7 @@ $(document).ready(function(){
                     }
                 }
             });
-        }
-        
-
+        }   
     });
 }); 
 
