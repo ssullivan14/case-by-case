@@ -55,3 +55,39 @@ body {
 td {
   white-space: normal !important;
 }
+
+.btn-dropDown {
+  background-color: #85B598;
+  color: #fff;
+  border: 0px;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.btn-dropDown:hover {
+  background-color: #62846F;
+  color: #fff;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,0.2);
+  min-width: 160px;
+  margin-left: -60px;
+  margin-top: -5px;
+  z-index: 2;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.btn-login {
+  font-weight: 600;
+    color: #282726;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding:5%;
+}

@@ -26,7 +26,13 @@
             <div class="navbar-nav">
             <a class="nav-item nav-link" href="/about">About&nbsp;</a>
             <a class="nav-item nav-link" href="/member_contact"><i class="far fa-paper-plane menuIcons"></i>&nbsp;Contact Us</a>
-            <a class="nav-item nav-link" href="#"><i class="fas fa-user-secret userIcon"></i>&nbsp;<span class="member-name"></span></a>
+            <!-- Login Dropdown -->
+            <div class="dropdown">
+                <a class="nav-item nav-link" href="#"><i class="fas fa-user-secret userIcon"></i>&nbsp;<span class="member-name"></span></a>
+                <div class="dropdown-menu p-3 text-center">
+                    <a href="/logout" class="btn btn-login">&nbsp;<i class="fas fa-external-link-alt"></i>&nbsp;Log Out&nbsp;</a>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="container">

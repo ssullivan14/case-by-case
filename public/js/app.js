@@ -54,21 +54,21 @@ $("#tableSearchResults").hide();
 $("#backSearch").hide();
 $("#unidentifiedTable").hide();
 
+// GET request to determine which user is logged in
+$.get("/api/user_data").then(function(data) {
+    console.log(data);
+    
+    if (data.username) {
+        $(".member-name").text(data.username);
+        $("#username").val(data.username);
+    } else {
+        // For testing
+        $(".member-name").text("Default");
+    }
+});
 
 $(document).ready(function(){
     initMap();
-    // GET request to determine which user is logged in
-    $.get("/api/user_data").then(function(data) {
-        console.log(data);
-        
-        if (data.username) {
-            $(".member-name").text(data.username);
-            $("#username").val(data.username);
-        } else {
-            // For testing
-            $(".member-name").text("Default");
-        }
-      });
 
     // Load date picker to search form
     var date_input=$('input[name="date"]'); //our date input has the name "date"
