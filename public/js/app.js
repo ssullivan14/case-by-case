@@ -48,8 +48,6 @@ var locations = [];
 var zoomOption;
 var centerOption = {};
 
-// Please upload
-
 // Hide elements on load
 $("#map").hide();
 $("#tableSearchResults").hide();
