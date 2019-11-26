@@ -70,9 +70,7 @@ For each case found, the following information will be retrieved:
 - Location Details
 - Images (*if available*)
 
-<aside class="warning">
-Please be advised that some images may be graphic. 
-</aside>
+> Please be advised that some images may be graphic.
 
 ![unidentifiedPerson](public/img/uniPerson.png)
 
@@ -86,4 +84,5 @@ For each incident found, the following information will be retrieved:
 - Incident Description
 - Address
 - Location
+
 ![otherSearches](public/img/otherSearch.png)
