@@ -70,9 +70,20 @@ For each case found, the following information will be retrieved:
 - Location Details
 - Images (*if available*)
 
-<Warning>
-*bar*
-</Warning>
+<aside class="warning">
+Please be advised that some images may be graphic. 
+</aside>
+
+![unidentifiedPerson](public/img/uniPerson.png)
 
 ##### Other
-TBD
+All other search types query various Socrata APIs for incident information from local police departments.
+
+For each incident found, the following information will be retrieved:
+- Case Number
+- Incident Date/Time
+- Incident Day of Week
+- Incident Description
+- Address
+- Location
+![otherSearches](public/img/otherSearch.png)
