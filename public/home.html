@@ -17,9 +17,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- FontAwesome -->
     <script src="https://kit.fontawesome.com/eeaaa00cac.js"></script>
-    <!-- Bootstrap Date-Picker Plugin -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker3.css"/>    
+    <!-- DatePicker -->
+    <link rel="stylesheet" href="styles/datepicker.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/datepicker/0.6.5/datepicker.js"></script>
     <title>Case by Case</title>
 </head>
 <body id="static">
@@ -37,7 +37,7 @@
             <!-- Login Dropdown -->
             <div class="dropdown">
                 <a class="nav-item nav-link" href="#"><i class="fas fa-user-secret userIcon"></i>&nbsp;<span class="member-name"></span></a>
-                <div class="dropdown-menu p-3 text-center">
+                <div class="dropdown-menu p-3 text-center logout">
                     <a href="/logout" class="btn btn-login">&nbsp;<i class="fas fa-external-link-alt"></i>&nbsp;Log Out&nbsp;</a>
                 </div>
             </div>
@@ -92,7 +92,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <input class="form-control" id="start-date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                                <input class="form-control" id="start-date" name="date" placeholder="MM/DD/YYY" type="text" data-toggle="datepicker"/>
                             </div>
                         </div>
                         <div class="col spacer">
@@ -101,7 +101,7 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-calendar-alt"></i></span>
                                 </div>
-                                <input class="form-control" id="end-date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                                <input class="form-control" id="end-date" name="date" placeholder="MM/DD/YYY" type="text" data-toggle="datepicker"/>
                             </div>
                         </div>
                     </div>
