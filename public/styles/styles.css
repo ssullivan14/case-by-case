@@ -75,6 +75,7 @@ header .overlay {
   background-color: rgba(0,0,0,0.2);
   min-width: 160px;
   margin-left: -120px;
+  margin-top: -5px;
   z-index: 2;
 }
 
