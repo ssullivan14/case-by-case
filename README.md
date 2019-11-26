@@ -43,11 +43,36 @@ Users should over over the **Login** button, then enter their username and passw
 Once you've logged in, click the drop to select a **Location**, an **Incident Type**, and then set your **Start Date** and **End Date** using the calendar picker. Then, click submit.
 ![search](public/img/search.png)
 
-##### Missing Persons
-TBD 
+##### Missing Person
+Selecting the *Missing Person* option from the **Incident Type** drop-down will allow you to search the NamUs database.
+
+For each case found, the following information will be retrieved:
+- Name
+- Image (*if available*)
+- Area of Last Contact
+- Date of Last Contact
+- Age at Time of Disappearance
+- Current Age
+- Race/Ethnicity
+- Gender
+
+You may also click the link button to view the case on NamUs' website.
+![search](public/img/missingPerson.png)
 
 ##### Unidentified Persons
-TBD
+Selecting the *Unidentified Persons* option from the **Incident Type** drop-down will allow you to search the Socrata APIs for deceased individuals who have not yet been identified.
+
+For each case found, the following information will be retrieved:
+- Case Number
+- Date Found
+- Description
+- Address
+- Location Details
+- Images (*if available*)
+
+<Warning>
+*bar*
+</Warning>
 
 ##### Other
 TBD
