@@ -24,7 +24,30 @@ TBD
 - [NamUs Public Data](https://public.opendatasoft.com/explore/dataset/namus-missings/information/)
 
 ## Getting Started
+Visit LINK TO SITE.
+
+### Prerequisites
+- An internet browser with JavaScript enabled.
+- A Case By Case account.
+
+### Instructions
+#### Sign-Up for a Case By Case Account
+Users should click the **Sign-Up** button, then enter their desired username, their email address, and a password.
+![signup](public/img/signup.png)
+
+#### Login to Case By Case
+Users should over over the **Login** button, then enter their username and password. Click **Log In** to complete the process.
+![login](public/img/login.png)
+
+#### Searching
+Once you've logged in, click the drop to select a **Location**, an **Incident Type**, and then set your **Start Date** and **End Date** using the calendar picker. Then, click submit.
+![search](public/img/search.png)
+
+##### Missing Persons
+TBD 
+
+##### Unidentified Persons
 TBD
 
-## Prerequisites
+##### Other
 TBD
