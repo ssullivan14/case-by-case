@@ -71,6 +71,7 @@ For each case found, the following information will be retrieved:
 - Images (*if available*)
 
 > Please be advised that some images may be graphic.
+
 ![unidentifiedPerson](public/img/uniPerson.png)
 
 ##### Other
