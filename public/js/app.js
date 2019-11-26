@@ -1,6 +1,5 @@
 //Google Map locations
 var locations = [];
-var temp = {};
 var zoomOption;
 var centerOption = {};
  // test syntax
@@ -199,7 +198,8 @@ $(document).ready(function(){
                             </div>
                             <br>
                         `
-                        // pushing data to location aray and converting to object                                
+                        // pushing data to location aray and converting to object
+                        var temp = {};                                
                         temp['lat'] = parseFloat(namusLatitude);
                         temp["lng"] = parseFloat(namusLongitude);
                         locations.push(temp);
@@ -393,7 +393,8 @@ $(document).ready(function(){
                         </tr>
                         `
 
-                        // pushing data to location aray and converting to object                                
+                        // pushing data to location aray and converting to object
+                        var temp = {};                                
                         temp['lat'] = parseFloat(socrataLatitude);
                         temp["lng"] = parseFloat(socrataLongitude);
                         locations.push(temp);
