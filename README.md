@@ -3,7 +3,7 @@
 </p>
 
 ## Overview
-TBD
+There is no central database of all police activity for the country. There is not even a database for each state. Typically the most you will find is at the city or county level, but not all of them have that information online. Because of all this there is a significant lack of publicly available databases regarding crimes, cold cases, and missing persons cases. There are different software vendors to manage the various aspects of police paperwork so there is no universal standard. This leaves a bunch of isolated databases that are unable to communicate or interface data seamlessly. With roadblocks like these, there is no wonder that the closure rates for cases are so low. This has brought to the forefront the use of amateur sleuths that use the internet to help law enforcement close these cases and bring closure to the affected families. **Case by Case** takes these isolated databases and gives the user the capability to search them all in one form submission.
 
 ## Languages/Technologies Used
 - HTML, CSS, JavaScript
@@ -24,7 +24,7 @@ TBD
 - [NamUs Public Data](https://public.opendatasoft.com/explore/dataset/namus-missings/information/)
 
 ## Getting Started
-Visit LINK TO SITE.
+Visit https://nameless-gorge-05262.herokuapp.com/.
 
 ### Prerequisites
 - An internet browser with JavaScript enabled.
